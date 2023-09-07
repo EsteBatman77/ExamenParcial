@@ -44,6 +44,7 @@ char readKeyPad() {
 
 void uno(char key){
     double x1, y1, x2, y2;
+    string sx1, sx2, sy2, sy1;
     double m, b;
     bool flag = true;
     
@@ -53,14 +54,14 @@ void uno(char key){
      key = readKeyPad();
      while(key != '#'){
          key = readKeyPad();
-        string sx1 += key;
+        sx1 += key;
      }
      x1 = std::stod(sx1);
      cout << "Ingrese las coordenada en y del primer punto (Y1): ";
      key = readKeyPad();
      while(key != '#'){
          key = readKeyPad();
-        string sy1 += key;
+         sy1 += key;
      }
      y1 = std::stod(sy1);
 
@@ -68,14 +69,14 @@ void uno(char key){
     key = readKeyPad();
      while(key != '#'){
          key = readKeyPad();
-        string sx2 += key;
+         sx2 += key;
      }
      x2 = std::stod(sx2);
      cout << "Ingrese las coordenada en y del segundo punto (Y2): ";
      key = readKeyPad();
      while(key != '#'){
          key = readKeyPad();
-        string sy2 += key;
+         sy2 += key;
      }
      y2 = std::stod(sy2);
 
@@ -116,8 +117,8 @@ int devEstandar(const std::vector<int>& temperaturas) {
     return desviacionEstandar;                                                         
 }
 
-
-int dos(key){
+int dos(char key){
+    string selemento;
     std::cout>> "Ingrese la cantidad de temperaturas a registrar";
     key = readKeyPad();
     int n = std::atoi(key);
@@ -129,7 +130,7 @@ int dos(key){
     for(int elemento : temperaturas){
         while(key != '#'){
             key = readKeyPad();
-            string selemento += key;
+            selemento += key;
         }
         elemento = std::stoi(selemento);
     }
@@ -162,7 +163,7 @@ int hexaDeci(const std::string& nHex) {
     return nDeci;
 }
 
-void tres() {
+void tres(char key) {
     
     PwmOut red(LED1);
     PwmOut green(LED2);
@@ -178,7 +179,6 @@ void tres() {
         key = readKeyPad();
         hex += key;
     }
-    hex = std::stoi(shex);
 
     if (hex.length() != 6) {
         std::cout << "El código hexadecimal debe tener 6 caracteres." << std::endl;
@@ -215,10 +215,10 @@ int main() {
                 uno(key);
             }
             if (key == '2') {
-                dos();
+                dos(key);
             }
             if (key == '3') {
-                tres();
+                tres(key);
             }
         }
     }
