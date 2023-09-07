@@ -119,13 +119,13 @@ int devEstandar(const std::vector<int>& temperaturas) {
 
 int dos(char key){
     string selemento;
-    std::cout>> "Ingrese la cantidad de temperaturas a registrar";
+    std::cout << "Ingrese la cantidad de temperaturas a registrar";
     key = readKeyPad();
     int n = std::atoi(key);
 
     std::vector<int> temperaturas(n);
 
-    std::cout>> "Ingrese las temperaturas separadas por el #";
+    std::cout << "Ingrese las temperaturas separadas por el #";
 
     for(int elemento : temperaturas){
         while(key != '#'){
@@ -169,7 +169,7 @@ void tres(char key) {
     PwmOut green(LED2);
     PwmOut blue(LED3);
 
-    std::string hex;
+    string hex;
     float pwmR = 0.0;
     float pwmG = 0.0;
     float pwmB = 0.0;
@@ -184,9 +184,9 @@ void tres(char key) {
         std::cout << "El código hexadecimal debe tener 6 caracteres." << std::endl;
     }
 
-    std::string hexR = hex.substr(0, 2);
-    std::string hexG = hex.substr(2, 2);
-    std::string hexB = hex.substr(4, 2);
+    string hexR = hex.substr(0, 2);
+    string hexG = hex.substr(2, 2);
+    string hexB = hex.substr(4, 2);
 
     pwmR = hexaDeci(hexR);
     pwmG = hexaDeci(hexG);
