@@ -55,22 +55,22 @@ void uno(char key){
      }
      cout << "Ingrese las coordenada en y del primer punto (Y1): ";
      key = readKeyPad();
-     if(key != '#'){
+     while(key != '#'){
         y1 = key;
      }
 
     cout << "Ingrese las coordenada en x del segundo punto (X2): ";
     key = readKeyPad();
-    if(key != '#'){
+    while(key != '#'){
         x2 = key;
      }
      cout << "Ingrese las coordenada en y del segundo punto (Y2): ";
      key = readKeyPad();
-     if(key != '#'){
+     while(key != '#'){
         y2 = key;
         }       
 
-    if (x1 == x2) {
+    while(x1 == x2) {
          cout << "La pendiente es indeterminada (división por 0)." << std::endl;
     } else {
          m = (y2 - y1) / (x2 - x1);
