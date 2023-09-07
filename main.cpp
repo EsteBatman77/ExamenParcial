@@ -70,7 +70,7 @@ void uno(char key){
         y2 = key;
         }       
 
-    while(x1 == x2) {
+    if(x1 == x2) {
          cout << "La pendiente es indeterminada (división por 0)." << std::endl;
     } else {
          m = (y2 - y1) / (x2 - x1);
