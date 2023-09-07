@@ -168,7 +168,6 @@ void tres() {
 
     if (hex.length() != 6) {
         std::cout << "El código hexadecimal debe tener 6 caracteres." << std::endl;
-        return -1;
     }
 
     std::string hexR = hex.substr(0, 2);
