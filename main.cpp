@@ -18,8 +18,8 @@ char keys[ROWS][COLS] = {
 const char NO_KEY = '\0';
 char key;
 
-DigitalIn rowPins[ROWS] = {PTC9, PTC8, PTA5, PTA4};
-DigitalOut colPins[COLS] = {PTA12, PTD4, PTC0};
+DigitalIn rowPins[ROWS] = {PTE19, PTE18, PTE17, PTE16};
+DigitalOut colPins[COLS] = {PTE6, PTE5, PTE4};
 
 char readKeyPad() {
     // Loop through each column, set it as output, and scan rows
@@ -93,7 +93,6 @@ void uno(char key){
     }
 }
 
-
 int promedio(const std::vector<int>& temperaturas)
 {
     int suma = 0;
@@ -117,11 +116,11 @@ int devEstandar(const std::vector<int>& temperaturas) {
     return desviacionEstandar;                                                         
 }
 
-int dos(char key){
+void dos(char key){
     string selemento;
     std::cout << "Ingrese la cantidad de temperaturas a registrar";
     key = readKeyPad();
-    int n = std::atoi(key);
+    int n = key - '0';
 
     std::vector<int> temperaturas(n);
 
@@ -202,8 +201,6 @@ void tres(char key) {
 
 }
 
-
-
 int main() {
     
 
@@ -214,10 +211,10 @@ int main() {
             if (key == '1') {
                 uno(key);
             }
-            if (key == '2') {
+            if (key == '2'){
                 dos(key);
             }
-            if (key == '3') {
+            if (key == '3'){
                 tres(key);
             }
         }
