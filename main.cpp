@@ -76,49 +76,7 @@ void uno(char key){
 }
 
 
-int promedio(const std::vector<int>& temperaturas)
-{
-    int suma = 0;
-    for (int elemento : temperaturas) {
-        suma += elemento;
-    }
-    return suma / temperaturas.size();
-}
 
-int devEstandar(const std::vector<int>& temperaturas) {
-                                                    
-    int promedio_temperaturas = promedio(temperaturas);
-    int sumaDiferenciasCuadradas = 0;
-                                                                
-    for (int elemento : temperaturas) {
-        int diferencia = elemento - promedio_temperaturas;
-        sumaDiferenciasCuadradas += diferencia * diferencia;
-    }
-
-    int desviacionEstandar = std::sqrt(static_cast<double>(sumaDiferenciasCuadradas) / temperaturas.size());
-    return desviacionEstandar;                                                         
-}
-
-
-int dos(){
-    cout>> "Ingrese la cantidad de temperaturas a registrar";
-    char key = readKeyPad();
-    int n = std::atoi(key);
-
-    std::vector<int> temperaturas(n);
-
-    cout>> "Ingrese las temperaturas separadas por el #";
-
-    for(int elemento : temperaturas){
-        while(key != '#'){
-            key = readKeyPad();
-            elemento += std::atoi(key);
-        } 
-    }
-    
-    cout>> "El promedio es " + promedio(temperaturas) + " y la desviacion estandar es " + devEstandar(temperaturas);
-
-}
 
     int hexaDeci(string nHex){
     int nDeci = 0;
