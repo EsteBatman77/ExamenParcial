@@ -84,9 +84,54 @@ void uno(char key){
 }
 
 
+int promedio(const std::vector<int>& temperaturas)
+{
+    int suma = 0;
+    for (int elemento : temperaturas) {
+        suma += elemento;
+    }
+    return suma / temperaturas.size();
+}
+
+int devEstandar(const std::vector<int>& temperaturas) {
+                                                    
+    int promedio_temperaturas = promedio(temperaturas);
+    int sumaDiferenciasCuadradas = 0;
+                                                                
+    for (int elemento : temperaturas) {
+        int diferencia = elemento - promedio_temperaturas;
+        sumaDiferenciasCuadradas += diferencia * diferencia;
+    }
+
+    int desviacionEstandar = std::sqrt(static_cast<double>(sumaDiferenciasCuadradas) / temperaturas.size());
+    return desviacionEstandar;                                                         
+}
 
 
-    int hexaDeci(string nHex){
+int dos(){
+    std::cout>> "Ingrese la cantidad de temperaturas a registrar";
+    string key = readKeyPad();
+    int n = std::atoi(key);
+
+    std::vector<int> temperaturas(n);
+
+    std::cout>> "Ingrese las temperaturas separadas por el #";
+
+    for(int elemento : temperaturas){
+        while(key != '#'){
+            key = readKeyPad();
+            elemento += std::atoi(key);
+        } 
+    }
+    
+    int promedio_temperaturas = promedio(temperaturas);
+    int desviacion_estandar = devEstandar(temperaturas);
+
+    std::cout << "El promedio es " << promedio_temperaturas << " y la desviación estándar es " << desviacion_estandar << std::endl;
+
+}
+
+int hexaDeci(const std::string& nHex) {
     int nDeci = 0;
     int base = 16;
     
@@ -100,65 +145,50 @@ void uno(char key){
             nDeci += (toupper(digit) - 'A' + 10) * pow(base, exp);
         } else {
             // Error 
-            cout << "Caracter no valido en el numero hexadecimal: " << digit << endl;
+            std::cout << "Caracter no valido en el numero hexadecimal: " << digit << std::endl;
             return -1;
-            }
         }
-         return nDeci;
+    }
+    return nDeci;
 }
 
-void tres(){
-    // Initialise the digital pin LED1 as an output
+void tres() {
+    
     PwmOut red(LED1);
     PwmOut green(LED2);
     PwmOut blue(LED3);
-    
-    int hexV;
+
+    std::string hex;
     float pwmR = 0.0;
     float pwmG = 0.0;
     float pwmB = 0.0;
-   
-    while (true) {
 
-        cout << "Ingrese el código hexadecimal: ";
-        cin >> hexV;
+    std::cout << "Ingrese el código hexadecimal: ";
+    std::cin >> hex;
 
-        for(int i = 0; i < hex.length(); i += 2){
-            if(i == 0 ){
-                if(hex[i] < 10){
-                    hexR = (hex[i] * 10 + hex[i+1]) ;
-                }else{
-                    hexR = (hex[i] + hex[i+1]) ;
-                }
-            }else if(i == 2){
-                 if(hex[i] < 10){
-                    hexG = (hex[i] * 10 + hex[i+1]) ;
-                }else{
-                    hexG = (hex[i] + hex[i+1]) ;
-                }  
-            }else{
-                 if(hex[i] < 10){
-                    hexB = (hex[i] * 10 + hex[i+1]) ;
-                }else{
-                    hexB = (hex[i] + hex[i+1]) ;
-                }
-            }
-        }
-        
-        pwmR = hexToDecimal(hexR);
-        pwmG = hexToDecimal(hexG);
-        pwmB = hexToDecimal(hexB);
+    if (hex.length() != 6) {
+        std::cout << "El código hexadecimal debe tener 6 caracteres." << std::endl;
+        return -1;
+    }
 
-        pwmR /= 255;
-        pwmG /= 255;
-        pwmB /= 255;
+    std::string hexR = hex.substr(0, 2);
+    std::string hexG = hex.substr(2, 2);
+    std::string hexB = hex.substr(4, 2);
 
-        ledR.write(1.0 - pwmR);
-        ledG.write(1.0 - pwmG);
-        ledB.write(1.0 - pwmB);
-    }
+    pwmR = hexaDeci(hexR);
+    pwmG = hexaDeci(hexG);
+    pwmB = hexaDeci(hexB);
+
+    pwmR /= 255.0;
+    pwmG /= 255.0;
+    pwmB /= 255.0;
+
+    red.write(1.0 - pwmR);
+    green.write(1.0 - pwmG);
+    blue.write(1.0 - pwmB);
+
 }
-    
+
 
 
 int main() {
@@ -172,14 +202,12 @@ int main() {
                 uno(key);
             }
             if (key == '2') {
-                dos(key);
+                dos();
             }
             if (key == '3') {
-                tres(key);
+                tres();
             }
-            
         }
     }
-
     return 0;
 }
