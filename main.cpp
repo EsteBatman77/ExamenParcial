@@ -52,12 +52,14 @@ void uno(char key){
      cout << "Ingrese las coordenada en x del primer punto (X1): ";
      key = readKeyPad();
      while(key != '#'){
+         key = readKeyPad();
         string sx1 += key;
      }
      x1 = std::stod(sx1);
      cout << "Ingrese las coordenada en y del primer punto (Y1): ";
      key = readKeyPad();
      while(key != '#'){
+         key = readKeyPad();
         string sy1 += key;
      }
      y1 = std::stod(sy1);
@@ -65,12 +67,14 @@ void uno(char key){
     cout << "Ingrese las coordenada en x del segundo punto (X2): ";
     key = readKeyPad();
      while(key != '#'){
+         key = readKeyPad();
         string sx2 += key;
      }
      x2 = std::stod(sx2);
      cout << "Ingrese las coordenada en y del segundo punto (Y2): ";
      key = readKeyPad();
      while(key != '#'){
+         key = readKeyPad();
         string sy2 += key;
      }
      y2 = std::stod(sy2);
@@ -125,8 +129,9 @@ int dos(key){
     for(int elemento : temperaturas){
         while(key != '#'){
             key = readKeyPad();
-            elemento += std::atoi(key);
-        } 
+            string selemento += key;
+        }
+        elemento = std::stoi(selemento);
     }
     
     int promedio_temperaturas = promedio(temperaturas);
@@ -169,7 +174,11 @@ void tres() {
     float pwmB = 0.0;
 
     std::cout << "Ingrese el código hexadecimal: ";
-    std::cin >> hex;
+    while(key != '#'){
+        key = readKeyPad();
+        hex += key;
+    }
+    hex = std::stoi(shex);
 
     if (hex.length() != 6) {
         std::cout << "El código hexadecimal debe tener 6 caracteres." << std::endl;
