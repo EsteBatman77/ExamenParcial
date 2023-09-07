@@ -75,7 +75,6 @@ void uno(char key){
 
 }
 
-// main() runs in its own thread in the OS
 
 int promedio(const std::vector<int>& temperaturas)
 {
@@ -83,24 +82,23 @@ int promedio(const std::vector<int>& temperaturas)
     for (int elemento : temperaturas) {
         suma += elemento;
     }
-                        
-    return static_cast<double>(suma) / temperaturas.size();
+    return suma / temperaturas.size();
 }
 
-int devEstandar(std::vector<int>& temperaturas){
-    
-    int promedio = promedio(temperaturas<int>);
+int devEstandar(const std::vector<int>& temperaturas) {
+                                                    
+    int promedio_temperaturas = promedio(temperaturas);
     int sumaDiferenciasCuadradas = 0;
-    
+                                                                
     for (int elemento : temperaturas) {
-        int diferencia = elemento - promedio;
+        int diferencia = elemento - promedio_temperaturas;
         sumaDiferenciasCuadradas += diferencia * diferencia;
     }
 
-    int desviacionEstandar = std::sqrt(sumaDiferenciasCuadradas / temperaturas.size());
-
+    int desviacionEstandar = std::sqrt(static_cast<double>(sumaDiferenciasCuadradas) / temperaturas.size());
     return desviacionEstandar;                                                         
 }
+
 
 int dos(){
     cout>> "Ingrese la cantidad de temperaturas a registrar";
