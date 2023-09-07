@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib> // Necesario para std::atoi
+#include <string>
 
 #define DEBOUNCE_DELAY 200ms
 
@@ -51,24 +52,28 @@ void uno(char key){
      cout << "Ingrese las coordenada en x del primer punto (X1): ";
      key = readKeyPad();
      while(key != '#'){
-        x1 = key;
+        string sx1 += key;
      }
+     x1 = std::stod(sx1);
      cout << "Ingrese las coordenada en y del primer punto (Y1): ";
      key = readKeyPad();
      while(key != '#'){
-        y1 = key;
+        string sy1 += key;
      }
+     y1 = std::stod(sy1);
 
     cout << "Ingrese las coordenada en x del segundo punto (X2): ";
     key = readKeyPad();
-    while(key != '#'){
-        x2 = key;
+     while(key != '#'){
+        string sx2 += key;
      }
+     x2 = std::stod(sx2);
      cout << "Ingrese las coordenada en y del segundo punto (Y2): ";
      key = readKeyPad();
      while(key != '#'){
-        y2 = key;
-        }       
+        string sy2 += key;
+     }
+     y2 = std::stod(sy2);
 
     if(x1 == x2) {
          cout << "La pendiente es indeterminada (división por 0)." << std::endl;
@@ -108,9 +113,9 @@ int devEstandar(const std::vector<int>& temperaturas) {
 }
 
 
-int dos(){
+int dos(key){
     std::cout>> "Ingrese la cantidad de temperaturas a registrar";
-    string key = readKeyPad();
+    key = readKeyPad();
     int n = std::atoi(key);
 
     std::vector<int> temperaturas(n);
