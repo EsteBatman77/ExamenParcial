@@ -44,35 +44,43 @@ char readKeyPad() {
 void uno(char key){
     double x1, y1, x2, y2;
     double m, b;
+    bool flag = true;
     
-     std::cout << "Ingrese las coordenada en x del primer punto (X1): ";
+    while(flag == true){
+
+     cout << "Ingrese las coordenada en x del primer punto (X1): ";
+     key = readKeyPad();
      while(key != '#'){
-        std::cin >> x1;
+        x1 = key;
      }
-     std::cout << "Ingrese las coordenada en y del primer punto (Y1): ";
+     cout << "Ingrese las coordenada en y del primer punto (Y1): ";
+     key = readKeyPad();
      if(key != '#'){
-        std::cin >> y1;
+        y1 = key;
      }
 
-    std::cout << "Ingrese las coordenada en x del segundo punto (X2): ";
+    cout << "Ingrese las coordenada en x del segundo punto (X2): ";
+    key = readKeyPad();
     if(key != '#'){
-        std::cin >> x2;
+        x2 = key;
      }
-     std::cout << "Ingrese las coordenada en y del segundo punto (Y2): ";
+     cout << "Ingrese las coordenada en y del segundo punto (Y2): ";
+     key = readKeyPad();
      if(key != '#'){
-        std::cin >> y2;
+        y2 = key;
         }       
 
     if (x1 == x2) {
-         std::cout << "La pendiente es indeterminada (división por 0)." << std::endl;
+         cout << "La pendiente es indeterminada (división por 0)." << std::endl;
     } else {
          m = (y2 - y1) / (x2 - x1);
          b = y1 - (m * x1);
 
-        std::cout << "La pendiente de la recta es: " << m << std::endl;
-        std::cout << "El intercepto con el eje y es: " << b << std::endl;
+        cout << "La pendiente de la recta es: " << m << std::endl;
+        cout << "El intercepto con el eje y es: " << b << std::endl;
         }
-
+        flag = false;
+    }
 }
 
 
