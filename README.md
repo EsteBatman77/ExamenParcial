@@ -1,3 +1,7 @@
+Código realizado por:
+Esteban Díaz López
+Ana Carolina García Morales
+
 Código para Mbed - Teclado Matricial y Funciones Matemáticas
 Este repositorio contiene un programa para una plataforma Mbed que utiliza un teclado matricial para realizar tres tipos de operaciones matemáticas diferentes: calcular la pendiente e intersección de una recta, calcular el promedio y la desviación estándar de un conjunto de temperaturas, y controlar un LED RGB utilizando un código hexadecimal.
 
