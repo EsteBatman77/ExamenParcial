@@ -1,72 +1,44 @@
-![](./resources/official_armmbed_example_badge.png)
-# Blinky Mbed OS example
+Código para Mbed - Teclado Matricial y Funciones Matemáticas
+Este repositorio contiene un programa para una plataforma Mbed que utiliza un teclado matricial para realizar tres tipos de operaciones matemáticas diferentes: calcular la pendiente e intersección de una recta, calcular el promedio y la desviación estándar de un conjunto de temperaturas, y controlar un LED RGB utilizando un código hexadecimal.
 
-The example project is part of the [Arm Mbed OS Official Examples](https://os.mbed.com/code/) and is the [getting started example for Mbed OS](https://os.mbed.com/docs/mbed-os/latest/quick-start/index.html). It contains an application that repeatedly blinks an LED on supported [Mbed boards](https://os.mbed.com/platforms/).
+Configuración del Hardware
+Este programa está diseñado para funcionar con un teclado matricial y un microcontrolador compatible con la plataforma Mbed. La configuración de hardware necesaria incluye:
 
-You can build the project with all supported [Mbed OS build tools](https://os.mbed.com/docs/mbed-os/latest/tools/index.html). However, this example project specifically refers to the command-line interface tool [Arm Mbed CLI](https://github.com/ARMmbed/mbed-cli#installing-mbed-cli).
-(Note: To see a rendered example you can import into the Arm Online Compiler, please see our [import quick start](https://os.mbed.com/docs/mbed-os/latest/quick-start/online-with-the-online-compiler.html#importing-the-code).)
+Un teclado matricial con 4 filas y 3 columnas.
+Un microcontrolador Mbed compatible con pines GPIO para conectar el teclado matricial.
+Un LED RGB conectado a pines GPIO para el control de color.
+Asegúrate de conectar correctamente el teclado matricial y el LED RGB a tu microcontrolador antes de ejecutar el programa.
 
-## Mbed OS build tools
+Funcionalidades
+1. Calcular Pendiente e Intersección
+Esta funcionalidad permite al usuario ingresar las coordenadas de dos puntos (x1, y1) y (x2, y2) y calcular la pendiente y la intersección de la recta que pasa por esos puntos. La lógica detrás de esta función es la siguiente:
 
-### Mbed CLI 2
-Starting with version 6.5, Mbed OS uses Mbed CLI 2. It uses Ninja as a build system, and CMake to generate the build environment and manage the build process in a compiler-independent manner. If you are working with Mbed OS version prior to 6.5 then check the section [Mbed CLI 1](#mbed-cli-1).
-1. [Install Mbed CLI 2](https://os.mbed.com/docs/mbed-os/latest/build-tools/install-or-upgrade.html).
-1. From the command-line, import the example: `mbed-tools import mbed-os-example-blinky`
-1. Change the current directory to where the project was imported.
+El usuario ingresa las coordenadas (x1, y1) y (x2, y2) utilizando el teclado matricial.
+Se verifica si x1 es igual a x2 para determinar si la pendiente es indeterminada (división por cero).
+Si x1 no es igual a x2, se calcula la pendiente (m) utilizando la fórmula (y2 - y1) / (x2 - x1) y la intersección con el eje y (b) utilizando la fórmula y1 - (m * x1).
+Los resultados se muestran en la pantalla./n
+2. Calcular Promedio y Desviación Estándar
+La segunda funcionalidad permite al usuario ingresar una serie de temperaturas y luego calcular el promedio y la desviación estándar de esas temperaturas. La lógica detrás de esta función es la siguiente:
 
-### Mbed CLI 1
-1. [Install Mbed CLI 1](https://os.mbed.com/docs/mbed-os/latest/quick-start/offline-with-mbed-cli.html).
-1. From the command-line, import the example: `mbed import mbed-os-example-blinky`
-1. Change the current directory to where the project was imported.
+El usuario ingresa la cantidad de temperaturas que desea ingresar utilizando el teclado matricial.
+Luego, el usuario ingresa las temperaturas una por una.
+Se calcula el promedio sumando todas las temperaturas y dividiendo por la cantidad.
+Se calcula la desviación estándar utilizando la fórmula matemática correspondiente./n
 
-## Application functionality
+3. Controlar un LED RGB
+La tercera funcionalidad permite al usuario ingresar un código hexadecimal de 6 caracteres y utilizarlo para controlar un LED RGB. La lógica detrás de esta función es la siguiente:
 
-The `main()` function is the single thread in the application. It toggles the state of a digital output connected to an LED on the board.
-
-**Note**: This example requires a target with RTOS support, i.e. one with `rtos` declared in `supported_application_profiles` in `targets/targets.json` in [mbed-os](https://github.com/ARMmbed/mbed-os). For non-RTOS targets (usually with small memory sizes), please use [mbed-os-example-blinky-baremetal](https://github.com/ARMmbed/mbed-os-example-blinky-baremetal) instead.
-
-## Building and running
-
-1. Connect a USB cable between the USB port on the board and the host computer.
-1. Run the following command to build the example project and program the microcontroller flash memory:
-
-    * Mbed CLI 2
-
-    ```bash
-    $ mbed-tools compile -m <TARGET> -t <TOOLCHAIN> --flash
-    ```
-
-    * Mbed CLI 1
-
-    ```bash
-    $ mbed compile -m <TARGET> -t <TOOLCHAIN> --flash
-    ```
-
-Your PC may take a few minutes to compile your code.
-
-The binary is located at:
-* **Mbed CLI 2** - `./cmake_build/mbed-os-example-blinky.bin`</br>
-* **Mbed CLI 1** - `./BUILD/<TARGET>/<TOOLCHAIN>/mbed-os-example-blinky.bin`
-
-Alternatively, you can manually copy the binary to the board, which you mount on the host computer over USB.
-
-## Expected output
-The LED on your target turns on and off every 500 milliseconds.
-
-
-## Troubleshooting
-If you have problems, you can review the [documentation](https://os.mbed.com/docs/latest/tutorials/debugging.html) for suggestions on what could be wrong and how to fix it.
-
-## Related Links
-
-* [Mbed OS Stats API](https://os.mbed.com/docs/latest/apis/mbed-statistics.html).
-* [Mbed OS Configuration](https://os.mbed.com/docs/latest/reference/configuration.html).
-* [Mbed OS Serial Communication](https://os.mbed.com/docs/latest/tutorials/serial-communication.html).
-* [Mbed OS bare metal](https://os.mbed.com/docs/mbed-os/latest/reference/mbed-os-bare-metal.html).
-* [Mbed boards](https://os.mbed.com/platforms/).
-
-### License and contributions
-
-The software is provided under Apache-2.0 license. Contributions to this project are accepted under the same license. Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for more info.
-
-This project contains code from other projects. The original license text is included in those source files. They must comply with our license guide.
+El usuario ingresa el código hexadecimal utilizando el teclado matricial.
+Se verifica si el código tiene 6 caracteres.
+El código se divide en tres partes: RR (rojo), GG (verde) y BB (azul).
+Cada parte se convierte de hexadecimal a decimal y se normaliza para obtener un valor entre 0 y 1.
+Los valores normalizados se utilizan para controlar la intensidad de los colores en el LED RGB./n
+Uso del Teclado Matricial
+Utiliza las teclas numéricas (1, 2, 3) para seleccionar una de las tres funcionalidades.
+Ingresa datos numéricos o códigos hexadecimales utilizando el teclado matricial.
+Utiliza '#' para confirmar la entrada y '*' para limpiar la entrada actual./n
+Cómo Ejecutar el Programa
+Asegúrate de tener la plataforma Mbed configurada y conectada al hardware necesario.
+Copia y pega el código proporcionado en un nuevo proyecto Mbed.
+Compila y carga el programa en tu microcontrolador.
+Ejecuta el programa en el microcontrolador.
